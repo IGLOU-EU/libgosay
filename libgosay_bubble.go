@@ -28,12 +28,12 @@ func (b *BubbleDef) Think() {
 }
 
 func (b *BubbleDef) Whisper() {
-	b.Before = ""
-	b.OneLine = ""
-	b.FirstLine = ""
-	b.Lines = ""
-	b.LastLine = ""
-	b.After = ""
+	b.Before = " · "
+	b.OneLine = ": :"
+	b.FirstLine = ": :"
+	b.Lines = ": :"
+	b.LastLine = ": :"
+	b.After = " · "
 }
 
 func (b *BubbleDef) Narrative() {
