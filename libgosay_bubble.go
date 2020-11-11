@@ -1,4 +1,4 @@
-package gosaylib
+package libgosay
 
 type BubbleDef struct {
 	Before    string
