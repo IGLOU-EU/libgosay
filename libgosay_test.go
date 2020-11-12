@@ -36,8 +36,13 @@ func TestSay(t *testing.T) {
 	var g Pimp
 	g.Default()
 
-	se := 199
-	s, e := g.Say("Heya, it's me Imoen")
+	se := 128
+	s, e := g.Say("")
+	tError(e != nil, fmt.Sprint("DefaultSay error:", e), t)
+	tError(len(s) != se, fmt.Sprint("\nDefaultSay render len don't match\nExpected-", se, " Rended-", len(s), s), t)
+
+	se = 199
+	s, e = g.Say("Heya, it's me Imoen")
 	tError(e != nil, fmt.Sprint("DefaultSay error:", e), t)
 	tError(len(s) != se, fmt.Sprint("\nDefaultSay render len don't match\nExpected-", se, " Rended-", len(s), s), t)
 

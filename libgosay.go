@@ -56,6 +56,10 @@ func (p Pimp) Say(s string) (string, error) {
 		p.Bubble,
 	)
 
+	if p.Said == "" {
+		p.Tail = " "
+	}
+
 	body, err := template.New("body").Parse(p.Body)
 	if err != nil {
 		return "", err
@@ -79,6 +83,10 @@ func bubbleMyStrings(l []string, b BubbleDef) string {
 		lineLen = maxLen(l)
 	} else {
 		lineLen = len(l[0])
+	}
+
+	if bubbleLen == 1 && lineLen == 0 {
+		return ""
 	}
 
 	bubbleLines[0] = fmt.Sprintf("%c%s%c",
