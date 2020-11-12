@@ -21,12 +21,12 @@ type Pimp struct {
 
 const gopher string = `
 {{.Said}}
-    {{.Tail}}   ˏ⋒____⋒ˎ
+    {{.Tail}}   ˏ⋒___⋒ˎ
      {{.Tail}}  ▏ {{.Eye}}__{{.Eye}} ▕
         ▏  {{.Tongue}}  ▕
         ▏U    U▕
         ▏      ▕
-        ˋ-U--U-ˊ
+        ˋ-U---U-ˊ
 `
 
 func (p *Pimp) Default() {
@@ -77,24 +77,23 @@ func bubbleMyStrings(l []string, b BubbleDef) string {
 		lineLen = len(l[0])
 	}
 
-	bubbleLines[0] = fmt.Sprintf("%s%s%s",
-		b.Before[:1],
-		strings.Repeat(b.Before[1:2], lineLen+2),
-		b.Before[2:],
+	bubbleLines[0] = fmt.Sprintf("%c%s%c",
+		b.Before[0],
+		strings.Repeat(string(b.Before[1]), lineLen+2),
+		b.Before[2],
 	)
 
 	if bubbleLen == 1 {
-		bubbleLines[1] = fmt.Sprintf("%s%s%s%s%s",
-			b.OneLine[:1],
-			b.OneLine[1:2],
+		bubbleLines[1] = fmt.Sprintf("%c%c%s%c%c",
+			b.OneLine[0],
+			b.OneLine[1],
 			l[0],
-			b.OneLine[1:2],
-			b.OneLine[2:],
+			b.OneLine[1],
+			b.OneLine[2],
 		)
 	} else {
 		for i, v := range l {
-			var decoLine string
-			var spacer string
+			var decoLine [3]rune
 
 			if i == 0 {
 				decoLine = b.FirstLine
@@ -104,23 +103,21 @@ func bubbleMyStrings(l []string, b BubbleDef) string {
 				decoLine = b.Lines
 			}
 
-			spacer = strings.Repeat(" ", lineLen-len(v))
-
-			bubbleLines[i+1] = fmt.Sprintf("%s%s%s%s%s%s",
-				decoLine[:1],
-				decoLine[1:2],
+			bubbleLines[i+1] = fmt.Sprintf("%c%c%s%s%c%c",
+				decoLine[0],
+				decoLine[1],
 				v,
-				spacer,
-				decoLine[1:2],
-				decoLine[2:],
+				strings.Repeat(" ", lineLen-len(v)),
+				decoLine[1],
+				decoLine[2],
 			)
 		}
 	}
 
-	bubbleLines[bubbleLen+1] = fmt.Sprintf("%s%s%s",
-		b.After[:1],
-		strings.Repeat(b.After[1:2], lineLen+2),
-		b.After[2:],
+	bubbleLines[bubbleLen+1] = fmt.Sprintf("%c%s%c",
+		b.After[0],
+		strings.Repeat(string(b.After[1]), lineLen+2),
+		b.After[2],
 	)
 
 	return strings.Join(bubbleLines, "\n")
