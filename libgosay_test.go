@@ -11,6 +11,19 @@ func tError(r bool, s string, t *testing.T) {
 	}
 }
 
+func TestErrorfuc(t *testing.T) {
+	var p Pimp
+	var err error
+
+	_, err = p.Say("")
+	tError(err == nil, "If Say() is call with an Column size zero, we expect to catch an err", t)
+	p.Column = 10
+
+	_, err = p.Say("")
+	tError(err == nil, "If Say() is call with an empty p.Body, we expect to catch an err", t)
+	p.Default()
+}
+
 func TestStrfunc(t *testing.T) {
 	ss := splitStringToLen("Go for the eyes, Boo, go for the eyes!", 10)
 	tError(len(ss) != 4, fmt.Sprint("\nStringSplit error:\nExpect-4 give-", len(ss), "\n", ss), t)

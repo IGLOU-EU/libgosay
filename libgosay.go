@@ -47,6 +47,10 @@ func (p Pimp) Say(s string) (string, error) {
 		return "", fmt.Errorf("Column size can't be lower than 1")
 	}
 
+	if p.Body == "" {
+		return "", fmt.Errorf("Body template can't be empty")
+	}
+
 	p.Said = bubbleMyStrings(
 		splitStringToLen(s, p.Column),
 		p.Bubble,
