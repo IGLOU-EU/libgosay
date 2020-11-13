@@ -44,11 +44,11 @@ func (p Pimp) Say(s string) (string, error) {
 	var out bytes.Buffer
 
 	if p.Column <= 0 {
-		return "", fmt.Errorf("Column size can't be lower than 1")
+		return "", fmt.Errorf("column size can't be lower than 1")
 	}
 
 	if p.Body == "" {
-		return "", fmt.Errorf("Body template can't be empty")
+		return "", fmt.Errorf("body template can't be empty")
 	}
 
 	p.Said = bubbleMyStrings(
