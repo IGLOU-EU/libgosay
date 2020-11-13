@@ -12,10 +12,9 @@ One day, i noticed that there no lib to easy use CowSay with Go. So i made it :D
 
 ## How to using it
 
-First, you need to instance a var with a `Pimp` struct   
-From this one you can call `Default()` for populate it, or make it manually   
+First, use `Ceate()` to instance and init a `Pimp` struct   
+Now you can config you `gosay` instance like you whant
 When your configuration are done, you can use `Say()` to build a string formated like Cowsay   
-After this exemple, you can see the cool features   
 
 **Simple exemple**
 ```
@@ -27,10 +26,8 @@ inport (
 )
 
 func main() {
-    // Instance a gosay Pimp struc
-    gosay := libgosay.Pimp
-    // Load default configuration
-    gosay.Default()
+    // Instance and init gosay Pimp struc
+    gosay := libgosay.Create()
     // Catch say result
     say, err := gosay.Say("Heya, it's me Imoen")
     if err != nil {

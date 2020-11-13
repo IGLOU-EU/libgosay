@@ -31,17 +31,12 @@ const gopher string = `
         ˋ-U---U-ˊ
 `
 
-// Default load the minimal/default configuration
-// On Pimp struct for say some thing
-func (p *Pimp) Default() {
-	p.Column = 40
+// Create make a Pimp struct, init default values and return it
+func Create() Pimp {
+	var p Pimp
+	p.goSayInit()
 
-	p.Body = gopher
-	p.Eye = "@"
-	p.Tongue = "UU"
-	p.Tail = "\\"
-
-	p.Bubble.Speak()
+	return p
 }
 
 // Say is for say some thing with the lib
@@ -76,6 +71,17 @@ func (p Pimp) Say(s string) (string, error) {
 	}
 
 	return out.String(), nil
+}
+
+func (p *Pimp) goSayInit() {
+	p.Column = 40
+
+	p.Body = gopher
+	p.Eye = "@"
+	p.Tongue = "UU"
+	p.Tail = "\\"
+
+	p.Bubble.Speak()
 }
 
 func bubbleMyStrings(l []string, b BubbleDef) string {

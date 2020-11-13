@@ -21,7 +21,6 @@ func TestErrorfuc(t *testing.T) {
 
 	_, err = p.Say("")
 	tError(err == nil, "If Say() is call with an empty p.Body, we expect to catch an err", t)
-	p.Default()
 }
 
 func TestStrfunc(t *testing.T) {
@@ -33,8 +32,7 @@ func TestStrfunc(t *testing.T) {
 }
 
 func TestSay(t *testing.T) {
-	var g Pimp
-	g.Default()
+	var g = Create()
 
 	se := 128
 	s, e := g.Say("")
