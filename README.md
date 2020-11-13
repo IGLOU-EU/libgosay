@@ -127,5 +127,4 @@ gosay.Bubble.After = [3]rune{'', '', ''}
 ## License
 |                                         |                                                                                    |
 |:---------------------------------------:|------------------------------------------------------------------------------------|
-| ![Ascii Gopher](media/gopher_ascii.png) | This project is licensed under the MIT license                                     |
-|                                         | The licence file is available [By clicking here](LICENSE), or in repo LICENSE file |
+| ![Ascii Gopher](media/gopher_ascii.png) | This project is licensed under the MIT license. The licence file is available [By clicking here](LICENSE), or in repo LICENSE file |
