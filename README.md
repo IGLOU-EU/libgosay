@@ -12,7 +12,7 @@ One day, i noticed that there no lib to easy use CowSay with Go. So i made it :D
 
 ## How to using it
 
-First, use `Ceate()` to instance and init a `Pimp` struct   
+First, use `Create()` to instance and init a `Pimp` struct   
 Now you can config you `gosay` instance like you whant   
 When your configuration are done, you can use `Say()` to build a string formated like Cowsay   
 
