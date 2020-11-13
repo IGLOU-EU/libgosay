@@ -7,6 +7,8 @@ import (
 	"text/template"
 )
 
+// Pimp is the main part of this lib
+// You need to instance a Pimp struct for using it
 type Pimp struct {
 	Column int
 	Said   string
@@ -29,6 +31,8 @@ const gopher string = `
         ˋ-U---U-ˊ
 `
 
+// Default load the minimal/default configuration
+// On Pimp struct for say some thing
 func (p *Pimp) Default() {
 	p.Column = 40
 
@@ -40,6 +44,7 @@ func (p *Pimp) Default() {
 	p.Bubble.Speak()
 }
 
+// Say is for say some thing with the lib
 func (p Pimp) Say(s string) (string, error) {
 	var out bytes.Buffer
 
