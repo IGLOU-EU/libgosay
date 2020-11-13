@@ -125,6 +125,16 @@ gosay.Bubble.After = [3]rune{'', '', ''}
 - Tail rotation possibility (Text at right or left)
 
 ## License
-|                                         |                                                                                    |
-|:---------------------------------------:|------------------------------------------------------------------------------------|
-| ![Ascii Gopher](media/gopher_ascii.png) | This project is licensed under the MIT license. The licence file is available [By clicking here](LICENSE), or in repo LICENSE file |
+
+```
+ ____________________________________________________________ 
+/ This project is licensed under the MIT license.            \
+\ The licence file is available on repo LICENSE file         /
+ ------------------------------------------------------------ 
+        \   ˏ⋒____⋒ˎ
+         \  ▏ @__@ ▕
+            ▏  UU  ▕
+            ▏U    U▕
+            ▏      ▕
+            ˋ-U--U-ˊ
+```
