@@ -42,7 +42,7 @@ func main() {
 
 Some features are the same of `Cowsay`, but with little more.
 
-- Max Rune by line
+- Max Char by line
 - Show body only without any bubble
 - Can pimp your `Bubble`
 - Can pimp `Tail` `Eyes` `Tongue`
@@ -114,11 +114,12 @@ gosay.Bubble.FirstLine = [3]rune{'', '', ''}
 gosay.Bubble.Lines = [3]rune{'', '', ''}
 gosay.Bubble.LastLine = [3]rune{'', '', ''}
 gosay.Bubble.After = [3]rune{'', '', ''}
+gosay.Bubble.Tail = ''
 ```
 
 ## Todo
 
-- Tail rotation possibility (Text at right or left)
+- Open a ticket !
 
 ## License
 

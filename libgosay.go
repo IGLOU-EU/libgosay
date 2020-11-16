@@ -54,7 +54,8 @@ func (p Pimp) Say(s string) (string, error) {
 		return "", fmt.Errorf("body template can't be empty")
 	}
 
-	p.defineEyes()
+	p.setTail()
+	p.setEyes()
 
 	p.Said = bubbleMyStrings(
 		splitStringToLen(s, p.Column),
@@ -84,12 +85,11 @@ func (p *Pimp) goSayInit() {
 	p.Body = gopher
 	p.Eyes = "00"
 	p.Tongue = "UU"
-	p.Tail = "\\"
 
 	p.Bubble.Speak()
 }
 
-func (p *Pimp) defineEyes() {
+func (p *Pimp) setEyes() {
 	if p.EyeL != "" && p.EyeR != "" {
 		return
 	}
@@ -103,6 +103,14 @@ func (p *Pimp) defineEyes() {
 			break
 		}
 	}
+}
+
+func (p *Pimp) setTail() {
+	if p.Tail != "" {
+		return
+	}
+
+	p.Tail = string(p.Bubble.Tail)
 }
 
 func bubbleMyStrings(l []string, b BubbleDef) string {

@@ -9,6 +9,7 @@ type BubbleDef struct {
 	Lines     [3]rune
 	LastLine  [3]rune
 	After     [3]rune
+	Tail      rune
 }
 
 // Speak define a speaking bubble structure
@@ -19,6 +20,7 @@ func (b *BubbleDef) Speak() {
 	b.Lines = [3]rune{'|', ' ', '|'}
 	b.LastLine = [3]rune{'\\', ' ', '/'}
 	b.After = [3]rune{' ', '-', ' '}
+	b.Tail = '\\'
 }
 
 // Think define a thinking bubble structure
@@ -29,6 +31,7 @@ func (b *BubbleDef) Think() {
 	b.Lines = [3]rune{'(', ' ', ')'}
 	b.LastLine = [3]rune{'(', ' ', ')'}
 	b.After = [3]rune{' ', '-', ' '}
+	b.Tail = 'o'
 }
 
 // Whisper define a whisp bubble structure
@@ -39,6 +42,7 @@ func (b *BubbleDef) Whisper() {
 	b.Lines = [3]rune{':', ' ', ':'}
 	b.LastLine = [3]rune{':', ' ', ':'}
 	b.After = [3]rune{' ', '·', ' '}
+	b.Tail = '·'
 }
 
 // Narrative define a narrative text structure
@@ -49,4 +53,5 @@ func (b *BubbleDef) Narrative() {
 	b.Lines = [3]rune{'|', ' ', '|'}
 	b.LastLine = [3]rune{'|', ' ', '|'}
 	b.After = [3]rune{'=', '=', '='}
+	b.Tail = ' '
 }
