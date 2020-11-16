@@ -116,14 +116,14 @@ func bubbleMyStrings(l []string, b BubbleDef) string {
 		)
 	} else {
 		for i, v := range l {
-			var decoLine [3]rune
+			var decoLine *[3]rune
 
 			if i == 0 {
-				decoLine = b.FirstLine
+				decoLine = &b.FirstLine
 			} else if i == bubbleLen-1 {
-				decoLine = b.LastLine
+				decoLine = &b.LastLine
 			} else {
-				decoLine = b.Lines
+				decoLine = &b.Lines
 			}
 
 			bubbleLines[i+1] = fmt.Sprintf("%c%c%s%s%c%c",
