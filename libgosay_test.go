@@ -1,8 +1,10 @@
 package libgosay
 
 import (
+	"bytes"
 	"fmt"
 	"testing"
+	"text/template"
 )
 
 func tError(r bool, s string, t *testing.T) {
@@ -93,4 +95,87 @@ func TestBubble(t *testing.T) {
 	b.Narrative()
 	gr = bubbleMyStrings(s, b)
 	tError(gr != er, fmt.Sprint("Bad bubble formating:\n", gr), t)
+}
+
+var gs Pimp
+var bfInt int
+var bfStr string
+var bfStrt []string
+
+const gSay = "Les méchants, je les démolis. Tout ce qui brille, je me le garde. Devant moi, mes ennemis détalent. Je suis née pour gagner !"
+
+func BenchmarkCreate(b *testing.B) {
+	b.ResetTimer()
+
+	for i := 0; i < b.N; i++ {
+		gs = Create()
+	}
+
+	_ = gs
+}
+
+func BenchmarkSay(b *testing.B) {
+	b.ResetTimer()
+
+	for i := 0; i < b.N; i++ {
+		gs.Say(gSay)
+	}
+}
+
+func BenchmarkBms(b *testing.B) {
+	var s string
+	b.ResetTimer()
+
+	for i := 0; i < b.N; i++ {
+		bubbleMyStrings([]string{gSay}, gs.Bubble)
+	}
+
+	bfStr = s
+}
+
+func BenchmarkSstl(b *testing.B) {
+	var s []string
+	b.ResetTimer()
+
+	for i := 0; i < b.N; i++ {
+		s = splitStringToLen(gSay, gs.Column)
+	}
+
+	bfStrt = s
+}
+
+func BenchmarkMl(b *testing.B) {
+	var m int
+	b.ResetTimer()
+
+	for i := 0; i < b.N; i++ {
+		m = maxLen([]string{gSay})
+	}
+
+	bfInt = m
+}
+
+func BenchmarkBubble(b *testing.B) {
+	b.ResetTimer()
+
+	for i := 0; i < b.N; i++ {
+		gs.Bubble.Speak()
+		gs.Bubble.Think()
+		gs.Bubble.Whisper()
+		gs.Bubble.Narrative()
+	}
+}
+
+func BenchmarkTpl(b *testing.B) {
+	var s string
+	b.ResetTimer()
+
+	for i := 0; i < b.N; i++ {
+		var out bytes.Buffer
+		body, _ := template.New("body").Parse(gs.Body)
+		body.Execute(&out, gs)
+		s = out.String()
+	}
+
+	bfStr = s
 }
