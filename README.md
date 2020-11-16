@@ -45,12 +45,12 @@ Some features are the same of `Cowsay`, but with little more.
 - Max Rune by line
 - Show body only without any bubble
 - Can pimp your `Bubble`
-- Can pimp `Tail` `Eye` `Tongue`
+- Can pimp `Tail` `Eyes` `Tongue`
 - Load custom ASCII Body (with `Pimp.Body = body string`)
 
 Ex:
 ```
-Pimp.Eye = "O"
+Pimp.Eyes = "0o"
 Pimp.Tongue = "VV"
 Pimp.Tail = "o"
 ```
@@ -118,7 +118,6 @@ gosay.Bubble.After = [3]rune{'', '', ''}
 
 ## Todo
 
-- Separate Right and Left Eye (Rune table ?)
 - Tail rotation possibility (Text at right or left)
 
 ## License

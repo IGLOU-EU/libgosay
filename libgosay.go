@@ -14,9 +14,12 @@ type Pimp struct {
 	Said   string
 
 	Body   string
-	Eye    string
 	Tongue string
 	Tail   string
+
+	Eyes string
+	EyeL string
+	EyeR string
 
 	Bubble BubbleDef
 }
@@ -24,7 +27,7 @@ type Pimp struct {
 const gopher string = `
 {{.Said}}
     {{.Tail}}   ˏ⋒___⋒ˎ
-     {{.Tail}}  ▏ {{.Eye}}__{{.Eye}} ▕
+     {{.Tail}}  ▏ {{.EyeL}}__{{.EyeR}} ▕
         ▏  {{.Tongue}}  ▕
         ▏U    U▕
         ▏      ▕
@@ -50,6 +53,8 @@ func (p Pimp) Say(s string) (string, error) {
 	if p.Body == "" {
 		return "", fmt.Errorf("body template can't be empty")
 	}
+
+	p.defineEyes()
 
 	p.Said = bubbleMyStrings(
 		splitStringToLen(s, p.Column),
@@ -77,11 +82,27 @@ func (p *Pimp) goSayInit() {
 	p.Column = 40
 
 	p.Body = gopher
-	p.Eye = "@"
+	p.Eyes = "00"
 	p.Tongue = "UU"
 	p.Tail = "\\"
 
 	p.Bubble.Speak()
+}
+
+func (p *Pimp) defineEyes() {
+	if p.EyeL != "" && p.EyeR != "" {
+		return
+	}
+
+	for i, v := range p.Eyes {
+		if i == 0 {
+			p.EyeL = string(v)
+		} else if i == 1 {
+			p.EyeR = string(v)
+		} else {
+			break
+		}
+	}
 }
 
 func bubbleMyStrings(l []string, b BubbleDef) string {
