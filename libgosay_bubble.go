@@ -34,15 +34,37 @@ func (b *BubbleDef) Think() {
 	b.Tail = 'o'
 }
 
+// ThinkUTF8 define a thinking bubble structure but in UTF-8
+func (b *BubbleDef) ThinkUTF8() {
+	b.Before = [3]rune{' ', '⁀', ' '}
+	b.OneLine = [3]rune{'(', ' ', ')'}
+	b.FirstLine = [3]rune{'(', ' ', ')'}
+	b.Lines = [3]rune{'(', ' ', ')'}
+	b.LastLine = [3]rune{'(', ' ', ')'}
+	b.After = [3]rune{' ', '‿', ' '}
+	b.Tail = 'o'
+}
+
 // Whisper define a whisp bubble structure
 func (b *BubbleDef) Whisper() {
-	b.Before = [3]rune{' ', '·', ' '}
+	b.Before = [3]rune{' ', '.', ' '}
 	b.OneLine = [3]rune{':', ' ', ':'}
 	b.FirstLine = [3]rune{':', ' ', ':'}
 	b.Lines = [3]rune{':', ' ', ':'}
 	b.LastLine = [3]rune{':', ' ', ':'}
-	b.After = [3]rune{' ', '·', ' '}
-	b.Tail = '·'
+	b.After = [3]rune{' ', '.', ' '}
+	b.Tail = '*'
+}
+
+// WhisperUTF8 define a whisp bubble structure but in UTF-8
+func (b *BubbleDef) WhisperUTF8() {
+	b.Before = [3]rune{'◜', '╌', '◝'}
+	b.OneLine = [3]rune{'╎', ' ', '╎'}
+	b.FirstLine = [3]rune{'╎', ' ', '╎'}
+	b.Lines = [3]rune{'╎', ' ', '╎'}
+	b.LastLine = [3]rune{'╎', ' ', '╎'}
+	b.After = [3]rune{'◟', '╌', '◞'}
+	b.Tail = '⋱'
 }
 
 // Narrative define a narrative text structure
@@ -53,5 +75,27 @@ func (b *BubbleDef) Narrative() {
 	b.Lines = [3]rune{'|', ' ', '|'}
 	b.LastLine = [3]rune{'|', ' ', '|'}
 	b.After = [3]rune{'=', '=', '='}
+	b.Tail = ' '
+}
+
+// BigBoxUTF8 define a narrative text structure with a big box
+func (b *BubbleDef) BigBoxUTF8() {
+	b.Before = [3]rune{'┏', '━', '┓'}
+	b.OneLine = [3]rune{'┃', ' ', '┃'}
+	b.FirstLine = [3]rune{'┃', ' ', '┃'}
+	b.Lines = [3]rune{'┃', ' ', '┃'}
+	b.LastLine = [3]rune{'┃', ' ', '┃'}
+	b.After = [3]rune{'┗', '━', '┛'}
+	b.Tail = ' '
+}
+
+// AsianBoxUTF8 define a narrative text structure with asian style
+func (b *BubbleDef) AsianBoxUTF8() {
+	b.Before = [3]rune{'㇛', '㇐', '㇕'}
+	b.OneLine = [3]rune{'㇑', ' ', '㇑'}
+	b.FirstLine = [3]rune{'㇑', ' ', '㇑'}
+	b.Lines = [3]rune{'㇑', ' ', '㇑'}
+	b.LastLine = [3]rune{'㇑', ' ', '㇑'}
+	b.After = [3]rune{'㇗', '㇐', '㇘'}
 	b.Tail = ' '
 }

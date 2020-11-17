@@ -161,8 +161,12 @@ func BenchmarkBubble(b *testing.B) {
 	for i := 0; i < b.N; i++ {
 		gs.Bubble.Speak()
 		gs.Bubble.Think()
+		gs.Bubble.ThinkUTF8()
 		gs.Bubble.Whisper()
+		gs.Bubble.WhisperUTF8()
 		gs.Bubble.Narrative()
+		gs.Bubble.BigBoxUTF8()
+		gs.Bubble.AsianBoxUTF8()
 	}
 }
 

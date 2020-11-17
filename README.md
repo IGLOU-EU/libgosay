@@ -84,9 +84,14 @@ Give us:
 ```
 
 **But** you can using some other presconfigured Bubble   
+- Speak()
 - Think()
+- ThinkUTF8()
 - Whisper()
+- WhisperUTF8()
 - Narrative()
+- BigBoxUTF8()
+- AsianBoxUTF8()
 
 like this:
 ```
