@@ -82,9 +82,9 @@ func TestBubble(t *testing.T) {
 	gr = bubbleMyStrings(s, b)
 	tError(gr != er, fmt.Sprint("Bad bubble formating:\n", gr), t)
 
-	er = ` ··············· 
+	er = ` ............... 
 : I am the law! :
- ··············· `
+ ............... `
 	b.Whisper()
 	gr = bubbleMyStrings(s, b)
 	tError(gr != er, fmt.Sprint("Bad bubble formating:\n", gr), t)
