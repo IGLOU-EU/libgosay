@@ -18,11 +18,26 @@ func TestErrorfuc(t *testing.T) {
 	var err error
 
 	_, err = p.Say("")
-	tError(err == nil, "If Say() is call with an Column size zero, we expect to catch an err", t)
+	tError(err == nil, "\nIf Say() is call with an Column size zero, we expect to catch an err", t)
 	p.Column = 10
 
 	_, err = p.Say("")
-	tError(err == nil, "If Say() is call with an empty p.Body, we expect to catch an err", t)
+	tError(err == nil, "\nIf Say() is call with an empty p.Body, we expect to catch an err", t)
+
+	p.setEyes()
+	tError(p.EyeL != "" || p.EyeR != "", "\nWe expect EyeL and EyeR are empty", t)
+
+	p.Eyes = "0Oo"
+	p.setEyes()
+	tError(p.EyeL != "0" || p.EyeR != "O", fmt.Sprintf("\nWe expect to EyeL == 0 and EyeR == O :\np.Eyes = %s\np.EyeL = %s && p.EyeL = %s", p.Eyes, p.EyeL, p.EyeR), t)
+
+	p.Eyes = "--"
+	p.setEyes()
+	tError(p.EyeL != "0" || p.EyeR != "O", fmt.Sprintf("\nWe expect Eye* not change to -- :\np.Eyes = %s\np.EyeL = %s && p.EyeL = %s", p.Eyes, p.EyeL, p.EyeR), t)
+
+	p.Tail = "o"
+	p.setTail()
+	tError(p.Tail != "o", fmt.Sprintf("We expect p.Tail == o but p.Tail == %s", p.Tail), t)
 }
 
 func TestStrfunc(t *testing.T) {
@@ -31,6 +46,9 @@ func TestStrfunc(t *testing.T) {
 
 	ml := maxLen(ss)
 	tError(ml != 10, fmt.Sprint("\nMax array len error:\nExpect-10 give-", ml), t)
+
+	i := spaceBefore("toto", "___toto")
+	tError(i != 3, fmt.Sprint("\nSpace before object:\nExpect-3 give-", i), t)
 }
 
 func TestSay(t *testing.T) {
