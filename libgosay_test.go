@@ -52,6 +52,32 @@ func TestSay(t *testing.T) {
 	tError(len(s) != se, fmt.Sprint("\nDefaultSay render len don't match\nExpected-", se, " Rended-", len(s), s), t)
 }
 
+func TestCustomSay(t *testing.T) {
+	var g = Create()
+	g.Body = `{{- /* From https://github.com/paulkaefer/cowsay-files.git */ -}}
+{{- /* An owl */ -}}
+ {{.Said}}
+		 {{.Tail}}
+		  {{.Tail}}
+		   ___
+		  (o o)
+		 (  V  )
+		/--m-m-`
+
+	expect := ` _____________________ 
+	< Heya, it's me Imoen >
+	 --------------------- 
+				 \
+				  \
+				   ___
+				  (o o)
+				 (  V  )
+				/--m-m-`
+	out, err := g.Say("Heya, it's me Imoen")
+	tError(err != nil, fmt.Sprint("CustomSay error:", err), t)
+	tError(out != expect, fmt.Sprint("Bad output formating:\n", out), t)
+}
+
 func TestBubble(t *testing.T) {
 	var b BubbleDef
 	s := splitStringToLen("Les méchants, je les démolis. Tout ce qui brille, je me le garde. Devant moi, mes ennemis détalent. Je suis née pour gagner !", 40)
