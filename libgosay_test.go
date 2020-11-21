@@ -64,15 +64,16 @@ func TestCustomSay(t *testing.T) {
 		 (  V  )
 		/--m-m-`
 
-	expect := ` _____________________ 
-	< Heya, it's me Imoen >
-	 --------------------- 
-				 \
-				  \
-				   ___
-				  (o o)
-				 (  V  )
-				/--m-m-`
+	expect := `  _____________________ 
+ < Heya, it's me Imoen >
+  --------------------- 
+		 \
+		  \
+		   ___
+		  (o o)
+		 (  V  )
+		/--m-m-`
+
 	out, err := g.Say("Heya, it's me Imoen")
 	tError(err != nil, fmt.Sprint("CustomSay error:", err), t)
 	tError(out != expect, fmt.Sprint("Bad output formating:\n", out), t)
@@ -89,7 +90,7 @@ func TestBubble(t *testing.T) {
 \ gagner !                                 /
  ------------------------------------------ `
 	b.Speak()
-	gr := bubbleMyStrings(s, b)
+	gr := bubbleMyStrings(s, b, 0)
 	tError(gr != er, fmt.Sprint("Bad bubble formating:\n", gr), t)
 
 	s = splitStringToLen("I am the law!", 15)
@@ -98,29 +99,36 @@ func TestBubble(t *testing.T) {
 < I am the law! >
  --------------- `
 	b.Speak()
-	gr = bubbleMyStrings(s, b)
+	gr = bubbleMyStrings(s, b, 0)
 	tError(gr != er, fmt.Sprint("Bad bubble formating:\n", gr), t)
 
 	er = ` _______________ 
 ( I am the law! )
  --------------- `
 	b.Think()
-	gr = bubbleMyStrings(s, b)
+	gr = bubbleMyStrings(s, b, 0)
 	tError(gr != er, fmt.Sprint("Bad bubble formating:\n", gr), t)
 
 	er = ` ............... 
 : I am the law! :
  ............... `
 	b.Whisper()
-	gr = bubbleMyStrings(s, b)
+	gr = bubbleMyStrings(s, b, 0)
 	tError(gr != er, fmt.Sprint("Bad bubble formating:\n", gr), t)
 
 	er = `=================
 | I am the law! |
 =================`
 	b.Narrative()
-	gr = bubbleMyStrings(s, b)
+	gr = bubbleMyStrings(s, b, 0)
 	tError(gr != er, fmt.Sprint("Bad bubble formating:\n", gr), t)
+
+	er = `     =================
+     | I am the law! |
+     =================`
+	b.Narrative()
+	gr = bubbleMyStrings(s, b, 5)
+	tError(gr != er, fmt.Sprint("Bad spacer size:\n", gr), t)
 }
 
 var gs Pimp
@@ -153,7 +161,7 @@ func BenchmarkBms(b *testing.B) {
 	b.ResetTimer()
 
 	for i := 0; i < b.N; i++ {
-		bubbleMyStrings([]string{gSay}, gs.Bubble)
+		bubbleMyStrings([]string{gSay}, gs.Bubble, 0)
 	}
 
 	bfStr = s

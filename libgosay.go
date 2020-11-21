@@ -60,6 +60,7 @@ func (p Pimp) Say(s string) (string, error) {
 	p.Said = bubbleMyStrings(
 		splitStringToLen(s, p.Column),
 		p.Bubble,
+		spaceBefore("{{.Said}}", p.Body),
 	)
 
 	if p.Said == "" {
@@ -113,9 +114,23 @@ func (p *Pimp) setTail() {
 	p.Tail = string(p.Bubble.Tail)
 }
 
-func bubbleMyStrings(l []string, b BubbleDef) string {
+func spaceBefore(find string, in string) int {
+	var pos int
+
+	for _, v := range strings.Split(in, "\n") {
+		if strings.Contains(v, find) {
+			pos = strings.Index(v, find)
+			break
+		}
+	}
+
+	return pos
+}
+
+func bubbleMyStrings(l []string, b BubbleDef, s int) string {
 	var lineLen int
 
+	spacer := strings.Repeat(" ", s)
 	bubbleLen := len(l)
 	bubbleLines := make([]string, bubbleLen+2)
 
@@ -129,14 +144,16 @@ func bubbleMyStrings(l []string, b BubbleDef) string {
 		return ""
 	}
 
-	bubbleLines[0] = fmt.Sprintf("%c%s%c",
+	bubbleLines[0] = fmt.Sprintf("%s%c%s%c",
+		spacer,
 		b.Before[0],
 		strings.Repeat(string(b.Before[1]), lineLen+2),
 		b.Before[2],
 	)
 
 	if bubbleLen == 1 {
-		bubbleLines[1] = fmt.Sprintf("%c%c%s%c%c",
+		bubbleLines[1] = fmt.Sprintf("%s%c%c%s%c%c",
+			spacer,
 			b.OneLine[0],
 			b.OneLine[1],
 			l[0],
@@ -155,7 +172,8 @@ func bubbleMyStrings(l []string, b BubbleDef) string {
 				decoLine = &b.Lines
 			}
 
-			bubbleLines[i+1] = fmt.Sprintf("%c%c%s%s%c%c",
+			bubbleLines[i+1] = fmt.Sprintf("%s%c%c%s%s%c%c",
+				spacer,
 				decoLine[0],
 				decoLine[1],
 				v,
@@ -166,7 +184,8 @@ func bubbleMyStrings(l []string, b BubbleDef) string {
 		}
 	}
 
-	bubbleLines[bubbleLen+1] = fmt.Sprintf("%c%s%c",
+	bubbleLines[bubbleLen+1] = fmt.Sprintf("%s%c%s%c",
+		spacer,
 		b.After[0],
 		strings.Repeat(string(b.After[1]), lineLen+2),
 		b.After[2],
