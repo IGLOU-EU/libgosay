@@ -22,12 +22,14 @@ package main
 
 inport (
     "fmt"
+
     "git.iglou.eu/Production/libgosay"
 )
 
 func main() {
     // Instance and init gosay Pimp struc
     gosay := libgosay.Create()
+
     // Catch say result
     say, err := gosay.Say("Heya, it's me Imoen")
     if err != nil {
@@ -46,13 +48,20 @@ Some features are the same of `Cowsay`, but with little more.
 - Show body only without any bubble
 - Can pimp your `Bubble`
 - Can pimp `Tail` `Eyes` `Tongue`
-- Load custom ASCII Body (with `Pimp.Body = body string`)
+- Load custom Body (with `Pimp.Body = body string`)
+
+> **Compatible body are avaiable** *(Converted from Cowsay and Ponysay)*:
+> Official repo https://git.iglou.eu/Production/libgosay_template
+> Github repo https://github.com/IGLOU-EU/libgosay_template
 
 Ex:
 ```
-Pimp.Eyes = "0o"
-Pimp.Tongue = "VV"
-Pimp.Tail = "o"
+gosay := libgosay.Create()
+
+// Pimp your gosay
+gosay.Eyes = "0o"
+gosay.Tongue = "VV"
+gosay.Tail = "o"
 ```
 
 Give us:
@@ -61,7 +70,7 @@ Give us:
 < Heya, it's me Imoen >
  --------------------- 
     o   ˏ⋒___⋒ˎ
-     o  ▏ O__O ▕
+     o  ▏ 0__O ▕
         ▏  VV  ▕
         ▏U    U▕
         ▏      ▕
@@ -95,7 +104,9 @@ Give us:
 
 like this:
 ```
-gosay := libgosay.Pimp
+gosay := libgosay.Create()
+
+// Change default bubble
 gosay.Bubble.Whisper()
 ```
 
@@ -110,7 +121,7 @@ Only if the string you want to say, is not bigger then one line.
 - Third rune are for the Right side
 
 ```
-gosay := libgosay.Pimp
+gosay := libgosay.Create()
 
 // Eatch 
 gosay.Bubble.Before = [3]rune{'', '', ''}
@@ -133,10 +144,10 @@ gosay.Bubble.Tail = ''
 / This project is licensed under the MIT license.            \
 \ The licence file is available on repo LICENSE file         /
  ------------------------------------------------------------ 
-        \   ˏ⋒____⋒ˎ
+        \   ˏ⋒___⋒ˎ
          \  ▏ @__@ ▕
             ▏  UU  ▕
             ▏U    U▕
             ▏      ▕
-            ˋ-U--U-ˊ
+            ˋ-U---U-ˊ
 ```
