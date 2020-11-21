@@ -50,9 +50,9 @@ Some features are the same of `Cowsay`, but with little more.
 - Can pimp `Tail` `Eyes` `Tongue`
 - Load custom Body (with `Pimp.Body = body string`)
 
-> **Compatible body are avaiable** *(Converted from Cowsay and Ponysay)*:
-> Official repo https://git.iglou.eu/Production/libgosay_template
-> Github repo https://github.com/IGLOU-EU/libgosay_template
+> **Compatible body are avaiable** *(Converted from Cowsay and Ponysay)*:    
+> Official repo https://git.iglou.eu/Production/libgosay_template    
+> Github repo https://github.com/IGLOU-EU/libgosay_template    
 
 Ex:
 ```
