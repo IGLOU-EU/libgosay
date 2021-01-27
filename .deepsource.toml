@@ -1,0 +1,15 @@
+version = 1
+
+test_patterns = [
+    "*_test.go",
+    "**/*_test.go"
+]
+
+exclude_patterns = ["media/**"]
+
+[[analyzers]]
+name = "go"
+enabled = true
+
+  [analyzers.meta]
+  import_paths = ["github.com/IGLOU-EU/libgosay"]
